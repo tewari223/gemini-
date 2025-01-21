@@ -4,7 +4,7 @@ import { MdAddPhotoAlternate } from "react-icons/md";
 import { IoIosSend } from "react-icons/io";
 import { useContext } from "react";
 import { Context } from "../context/Context";
-import geminiLogo from "../assets/geminiLogo.png"
+import geminiLogo from "../assets/geminiLogo.png";
 
 const Main = () => {
   const {
@@ -52,7 +52,7 @@ const Main = () => {
               <div className="h-[200px] p-4 bg-gray-200 rounded-lg relative cursor-pointer hover:bg-gray-300">
                 <p className="text-slate-700 text-lg">
                   {" "}
-                  Who is known of Father of AI?
+                  Who is known of Father of AI?   
                 </p>
                 <FaMessage className="text-4xl p-1 absolute bottom-2 right-2" />
               </div>
@@ -73,19 +73,25 @@ const Main = () => {
               </div>
             </div>
           </>
-        ):(
+        ) : (
           <div className="py-0 px-[5%] max-h-[70vh] overflow-y-scroll">
-          <div className="my-10 mx-0 flex items-center gap-5">
-          <FaUserCircle className="text-3xl" />
-           <p>{recentPrompt}</p>
+            <div className="my-10 mx-0 flex items-center gap-5">
+              <FaUserCircle className="text-3xl" />
+              <p>{recentPrompt}</p>
+            </div>
+            <div className="flex items-start gap-5">
+              <img src={geminiLogo} className="w-8 rounded-[50%]" />
+              {loading ? (
+                <div className="w-full flex flex-col gap-2">
+                  <hr className="rounded-md border-none bg-gray-200 bg-gradient-to-r from-[#81cafe] via-[#ffffff] to-[#81cafe] p-4 animate-scroll-bg " />
+                  <hr className="rounded-md border-none bg-gray-200 bg-gradient-to-r from-[#81cafe] via-[#ffffff] to-[#81cafe] p-4 animate-scroll-bg " />
+                  <hr className="rounded-md border-none bg-gray-200 bg-gradient-to-r from-[#81cafe] via-[#ffffff] to-[#81cafe] p-4 animate-scroll-bg " />
+                </div>
+              ) : (
+                <p className="text-lg font-[400] leading-[1.8]">{result}</p>
+              )}
+            </div>
           </div>
-          <div className="flex items-start gap-5">
-            <img src={geminiLogo} className="w-8 rounded-[50%]"/>
-            <p>{result}</p>
-          </div>
-            
-          </div>
-          
         )}
 
         <div className="absolute bottom-0 w-full max-w-[900px] px-5 mx-auto">
@@ -107,7 +113,7 @@ const Main = () => {
             </div>
           </div>
           <p className="text-sm my-4 mx-auto text-center font-[500] text-slate-600">
-            Ge mini may display inaccurate info,including about people ,so
+            Gemini may display inaccurate info,including about people ,so
             double-check its responses.
           </p>
         </div>

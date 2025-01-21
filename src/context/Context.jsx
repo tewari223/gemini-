@@ -10,31 +10,32 @@ const ContexProvider = (props) => {
  const [showResult,setShowResult] =useState(false)
  const [loading,setLoading] =useState(false)
  const [result,setResultData] =useState("")
+//  const delayPara =(index,nextWord) =>{}
  
 
-
+    
     const onSent =  async(prompt) =>{
-      setResultData("")
+      setResultData("") 
       setLoading(true)
       setShowResult(true)
       setRecentPrompt(input)
        const response = await run(prompt)
-       
+         //  let responseArray = response.split("**")
        setResultData(response)
        setLoading(false)
-       setInput("")
+       setInput("") 
     }
 
  const contextValue ={
     input,
     setInput,
     recentPrompt,
-    setRecentPrompt,
+    setRecentPrompt, 
     prevPrompt,
     setPrevPrompt,
     showResult,
     loading,
-   result,
+   result, 
    onSent,
  }
  return(
