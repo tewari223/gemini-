@@ -10,14 +10,14 @@ if (!apiKey) {
 const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
-    model: "gemini-2.0-flash-exp",
+    model: "gemini-2.0-flash-exp", // Validate this model name with API docs
 });
 
 const generationConfig = {
     temperature: 1,
     topP: 0.95,
     topK: 40,
-    maxOutputTokens: 8192,
+    maxOutputTokens: 8192, // Ensure this limit is supported
     responseMimeType: "text/plain",
 };
 
@@ -35,10 +35,11 @@ async function run(prompt, history = []) {
 
         console.log("API response:", result);
 
-        return result.response.text || "No response text available";
+        // Validate response structure
+        return result.response?.text || "No response text available";
     } catch (error) {
         console.error("Error during API call:", error.message, error.stack);
-        return "An error occurred while generating a response.";
+        return `An error occurred while generating a response: ${error.message}`;
     }
 }
 

@@ -88,7 +88,7 @@ const Main = () => {
                   <hr className="rounded-md border-none bg-gray-200 bg-gradient-to-r from-[#81cafe] via-[#ffffff] to-[#81cafe] p-4 animate-scroll-bg " />
                 </div>
               ) : (
-                <p className="text-lg font-[400] leading-[1.8]">{result}</p>
+                <p dangerouslySetInnerHTML={{__html:result}} className="text-lg font-[400] leading-[1.8]"></p>
               )}
             </div>
           </div>
@@ -107,7 +107,7 @@ const Main = () => {
               <MdAddPhotoAlternate className="text-2xl cursor-pointer" />
               <FaMicrophone className="text-2xl cursor-pointer" />
               <IoIosSend
-                onClick={() => onSent(input)}
+                onClick={() => onSent()}
                 className="text-2xl cursor-pointer"
               />
             </div>

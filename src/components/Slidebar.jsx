@@ -1,13 +1,19 @@
-import  {useState} from "react";
+import  {useContext, useState} from "react";
 import { IoMenu } from "react-icons/io5";
  import { FaHistory, FaPlus, FaQuestion } from "react-icons/fa";
  import { FaMessage } from "react-icons/fa6";
  import { IoIosSettings } from "react-icons/io";
+import { Context } from "../context/Context";
 
 
 
 const Slidebar = () => {
     const[extended,setExtended]=useState(false)
+    const{onSent,prevPrompt,setRecentPrompt} =useContext(Context)
+    const loadPrompt = async(prompt)=>{
+      setRecentPrompt(prompt)
+      await onSent(prompt)
+    }
   return (
     <div className="min-h-screen inline-flex flex-col justify-between bg-[#e4e7eb] px-[15px] py-[25px]">
       <div className="text-2xl block cursor-pointer">
@@ -18,11 +24,16 @@ const Slidebar = () => {
         </div>
        {extended && (<div className="mt-5">
            <p> Recent </p>
-            <div className="flex item-center gap-2 p-2 pr-10 rounded-[50px] text-slate-700 cursor-pointer hover:bg-gray-300">
-            <FaMessage className="text-2xl mt-2"/>
-            <p>What is java?</p>
-
-            </div> 
+           {prevPrompt?.map((item,index)=>{
+            return(
+              <div  onClick ={()=> loadPrompt(item)}  className="flex item-center gap-2 p-2 pr-10 rounded-[50px] text-slate-700 cursor-pointer hover:bg-gray-300">
+              <FaMessage className="text-2xl mt-2"/>
+              <p>{item.slice(0,18)}...     </p>
+  
+              </div> 
+            )
+           })}
+           
             </div>
 
 )} 

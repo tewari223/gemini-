@@ -10,7 +10,7 @@ const ContexProvider = (props) => {
  const [showResult,setShowResult] =useState(false)
  const [loading,setLoading] =useState(false)
  const [result,setResultData] =useState("")
-//  const delayPara =(index,nextWord) =>{}
+//   const delayPara =(index,nextWord) =>{}
  
 
     
@@ -18,10 +18,11 @@ const ContexProvider = (props) => {
       setResultData("") 
       setLoading(true)
       setShowResult(true)
-      setRecentPrompt(input)
-       const response = await run(prompt)
-         //  let responseArray = response.split("**")
-       setResultData(response)
+      setRecentPrompt(input) 
+      setPrevPrompt((prev)=>[...prev,input])
+       const response = await run(input) 
+         //   let responseArray = response.split("**")
+       setResultData(response) 
        setLoading(false)
        setInput("") 
     }
@@ -32,15 +33,15 @@ const ContexProvider = (props) => {
     recentPrompt,
     setRecentPrompt, 
     prevPrompt,
-    setPrevPrompt,
+    setPrevPrompt, 
     showResult,
     loading,
    result, 
    onSent,
  }
  return(
-    <Context.Provider value ={contextValue}>{props .children}</Context.Provider>
+    <Context.Provider value ={contextValue}>{props.children}</Context.Provider>
  )
     
 }
-export default ContexProvider 
+export default ContexProvider   
