@@ -9,7 +9,7 @@ import { Context } from "../context/Context";
 
 const Slidebar = () => {
     const[extended,setExtended]=useState(false)
-    const{onSent,prevPrompt,setRecentPrompt} =useContext(Context)
+    const{onSent,prevPrompt,setRecentPrompt,newchat} =useContext(Context)
     const loadPrompt = async(prompt)=>{
       setRecentPrompt(prompt)
       await onSent(prompt)
@@ -18,7 +18,7 @@ const Slidebar = () => {
     <div className="min-h-screen inline-flex flex-col justify-between bg-[#e4e7eb] px-[15px] py-[25px]">
       <div className="text-2xl block cursor-pointer">
         <IoMenu onClick={()=>setExtended(!extended)}/>
-        <div className="mt-[10px] inline-flex items-center gap-[10px] py-[10px] px-[15px] text-[14px] text-gray-500  bg-gray-300 rounded-full">
+        <div  onclick={()=>newchat()}className="mt-[10px] inline-flex items-center gap-[10px] py-[10px] px-[15px] text-[14px] text-gray-500  bg-gray-300 rounded-full">
           <FaPlus className="text-2xl"/>
           {extended &&<p>New Chat</p>}
         </div>

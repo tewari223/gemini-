@@ -12,7 +12,9 @@ const ContexProvider = (props) => {
  const [result,setResultData] =useState("")
 //   const delayPara =(index,nextWord) =>{}
  
-
+const newchat =()=>{
+   setLoading(false) 
+setShowResult(false)}
     
     const onSent =  async(prompt) =>{
       setResultData("") 
@@ -38,6 +40,7 @@ const ContexProvider = (props) => {
     loading,
    result, 
    onSent,
+   newchat,
  }
  return(
     <Context.Provider value ={contextValue}>{props.children}</Context.Provider>
