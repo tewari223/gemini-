@@ -10,14 +10,14 @@ if (!apiKey) {
 const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
-    model: "gemini-2.0-flash-exp", // Validate this model name with API docs
+    model: "gemini-2.0-flash-exp",
 });
 
 const generationConfig = {
     temperature: 1,
     topP: 0.95,
     topK: 40,
-    maxOutputTokens: 8192, // Ensure this limit is supported
+    maxOutputTokens: 8192,
     responseMimeType: "text/plain",
 };
 
@@ -26,7 +26,7 @@ async function run(prompt, history = []) {
         const chatSession = model.startChat({
             generationConfig,
             history: history.map((item) => ({
-                role: item.role, // "user" or "bot"
+                role: item.role, 
                 content: item.content,
             })),
         });
@@ -35,7 +35,7 @@ async function run(prompt, history = []) {
 
         console.log("API response:", result);
 
-        // Validate response structure
+      
         return result.response?.text || "No response text available";
     } catch (error) {
         console.error("Error during API call:", error.message, error.stack);
